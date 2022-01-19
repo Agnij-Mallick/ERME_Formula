@@ -163,4 +163,17 @@ r &= \dfrac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n (x_i-\ba
 & = \dfrac{\text{Cov}(x,y)}{\sigma_x \cdot \sigma_y}
 \end{align}
 
+\section{Estimation of Regression Function}
+For the regression functions:
+\begin{align}
+	Y_i = \beta_0 + \beta_1 X_1\\
+	\hat{Y_i} = \hat{\beta_0} + \hat{\beta_1} X_1\\
+\end{align}
+where $Y_i$ is the observed dependent variable (DV), $\hat{Y_i}$ is the estimated DV, and $X_i$ is the independent variable (IV).
+\begin{align}
+	u_i &= Y_i - \hat{Y_i}\\
+	\Rightarrow Y_i &= \hat{Y_i} + u_i\\
+	\Rightarrow Y_i &= \hat{\beta_0} + \hat{\beta_1} X_1 + u_i
+\end{align}
+
 \end{document}
