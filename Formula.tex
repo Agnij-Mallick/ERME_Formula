@@ -173,7 +173,17 @@ where $Y_i$ is the observed dependent variable (DV), $\hat{Y_i}$ is the estimate
 \begin{align}
 	u_i &= Y_i - \hat{Y_i}\\
 	\Rightarrow Y_i &= \hat{Y_i} + u_i\\
-	\Rightarrow Y_i &= \hat{\beta_0} + \hat{\beta_1} X_1 + u_i
+	\Rightarrow Y_i &= \hat{\beta_0} + \hat{\beta_1} X_1 + u_i\\
+	\Rightarrow u_i &= Y_i - \hat{\beta_0} + \hat{\beta_1} X_i\\
+	\Rightarrow u_i &= \left(\beta_0 - \hat{\beta_0}\right) + X_i \cdot \left( \beta_1 - \hat{\beta_1} \right)
 \end{align}
+The objective function is:
+\begin{align*}
+	^{\text{min}}_{u_i} \sum_n u_i^2 = \sum_n \left[\left(\beta_0 - \hat{\beta_0}\right) + X_i \cdot \left( \beta_1 - \hat{\beta_1} \right)\right]^2\\
+\end{align*}
+Simplifying $\sum_n u_i$:
+\begin{align*}
+	\sum_n u_i^2 = \sum_n (\beta_0 - \hat{\beta_0})^2 - \sum_n 2 \cdot (\beta_0 - \hat{\beta_0}) \cdot (\beta_1 - \hat{\beta_1}) \cdot X_i + \sum_n (\beta_1 - \hat{\beta_1})^2 \cdot X_i^2
+\end{align*}
 
 \end{document}
