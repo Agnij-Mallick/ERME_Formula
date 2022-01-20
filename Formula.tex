@@ -190,4 +190,38 @@ The objective function is:
 	\Rightarrow \hat{\beta_0} &= \boxed{\bar{Y} - \hat{\beta_1} \bar{X}}
 \end{align*}
 
+\subsection{Sum of Squares Error}
+\begin{align}
+	TSS &= \sum_i (Y_i - \bar{Y})^2\\
+	& = \underbrace{\sum_i (\hat{Y_i}-\bar{Y})}_{\text{Explained Sum of Square Error (ESS)}} + \underbrace{\sum_i u_i^2}_{\text{Residual Sum of Squares Error (RSS)}}
+\end{align}
+\subsubsection{$R^2$: Coefficient of Determination}
+\begin{align}
+	R^2 &= \dfrac{\text{ESS}}{\text{TSS}}\\
+	&= 1 - \dfrac{\text{RSS}}{\text{TSS}}\\
+	&= 1 - \dfrac{\sum_i u_i^2}{\sum_i (Y_i-\bar{Y})^2}
+\end{align}
+For a regression analysis with single IV:
+\begin{align*}
+	\sqrt{R^2} = v
+\end{align*}
+\subsubsection{$\bar{R^2}$: Coefficient of Determination}
+\begin{align}
+	\bar{R^2}= 1 - \dfrac{\dfrac{\sum_i u_i^2}{(N-K-1)}}{\dfrac{\sum_i (Y_i-\bar{Y})^2}{(N-1)}}
+\end{align}
+where, $N$ is the number of observations and $K$ is the number of independent variables.
+
+\subsection{T-Test}
+Test for statistical significance of a single IV.
+\begin{align}
+	T = \dfrac{\hat{\beta_1}-0}{S_e(\hat{\beta_1})}
+\end{align}
+\subsection{F-Test}
+Test for statistical significance of all IVs together.
+\begin{align}
+	F = \dfrac{\dfrac{\text{ESS}}{(K-1)}}{\dfrac{\text{RSS}}{(N-K)}} \tag{$F \geq F_c, H_0$ is rejected}
+\end{align}
+
+
+
 \end{document}
