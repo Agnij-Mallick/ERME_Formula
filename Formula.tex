@@ -174,16 +174,20 @@ where $Y_i$ is the observed dependent variable (DV), $\hat{Y_i}$ is the estimate
 	u_i &= Y_i - \hat{Y_i}\\
 	\Rightarrow Y_i &= \hat{Y_i} + u_i\\
 	\Rightarrow Y_i &= \hat{\beta_0} + \hat{\beta_1} X_1 + u_i\\
-	\Rightarrow u_i &= Y_i - \hat{\beta_0} + \hat{\beta_1} X_i\\
-	\Rightarrow u_i &= \left(\beta_0 - \hat{\beta_0}\right) + X_i \cdot \left( \beta_1 - \hat{\beta_1} \right)
+	Y_i &= \beta_0 + \beta_1 X_i+\epsilon_i
 \end{align}
 The objective function is:
 \begin{align*}
-	^{\text{min}}_{u_i} \sum_n u_i^2 = \sum_n \left[\left(\beta_0 - \hat{\beta_0}\right) + X_i \cdot \left( \beta_1 - \hat{\beta_1} \right)\right]^2\\
-\end{align*}
-Simplifying $\sum_n u_i$:
-\begin{align*}
-	\sum_n u_i^2 = \sum_n (\beta_0 - \hat{\beta_0})^2 - \sum_n 2 \cdot (\beta_0 - \hat{\beta_0}) \cdot (\beta_1 - \hat{\beta_1}) \cdot X_i + \sum_n (\beta_1 - \hat{\beta_1})^2 \cdot X_i^2
+	\displaystyle^{\min}_{u_i} \sum u_i &= \min \sum_i \left[ Y_i - \hat{\beta_0} - \hat{\beta_1} X_i\right]^2\\
+	&\text{Since the regression function passes through: } \left(\bar{X},\bar{Y}\right) \tag*{}\\
+	\beta_0 &= \bar{Y} - \hat{\beta_1}\bar{X}\\
+	\displaystyle^{\min}_{u_i} \sum u_i &= \min \sum_i \left[ Y_i - \bar{Y} + \hat{\beta_1} \bar{X} - \hat{\beta_1} X_i\right]^2\\
+	& = \min \sum_i \left[\left(Y_i - \bar{Y}\right) - \hat{\beta_1} \left(X_i - \bar{X}\right)\right]^2\\
+	& = \min \sum_i \left[\left(Y_i - \bar{Y}\right)^2 - 2 \cdot \left(Y_i - \bar{Y}\right) \cdot \hat{\beta_1} \left(X_i - \bar{X}\right) + \hat{\beta_1}^2 \left(X_i - \bar{X}\right)^2 \right]\\
+	& = \min \left[\sum_i \left(Y_i - \bar{Y}\right)^2 - 2 \cdot \hat{\beta_1} \sum_i \left(Y_i - \bar{Y}\right) \cdot  \left(X_i - \bar{X}\right) + \hat{\beta_1}^2 \sum_i \left(X_i - \bar{X}\right)^2 \right]\\
+	\Rightarrow u_i^{\beta_1} &= - 2 \sum_i \left(Y_i - \bar{Y}\right) + 2 \hat{\beta_1} \left(X_i - \bar{X}\right)^2 = 0 \tag{For optima Conditions}\\
+	\Rightarrow \hat{\beta_1} &= \boxed{\dfrac{\sum_i (Y_i - \bar{Y})(X_i - \bar{X})}{\sum_i (X_i - \bar{X})^2}}\\
+	\Rightarrow \hat{\beta_0} &= \boxed{\bar{Y} - \hat{\beta_1} \bar{X}}
 \end{align*}
 
 \end{document}
