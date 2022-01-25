@@ -60,7 +60,8 @@ v = \dfrac{s}{\bar{x}}
 
 \subsection{Skewness}
 \subsubsection{Types of Skewness}
-\begin{table}[h!]
+\begin{table}[!h]
+\centering
 \begin{tabular}{c|c|c}
 Name & Other Name & Characteristic\\
 \hline
@@ -80,6 +81,7 @@ m_3 &= \dfrac{1}{n}\sum_{i=1}^{n} \left( x_i - \bar{x} \right)^3
 \paragraph{Type of Skewness}
 The type of skewness from the value is $g_m$ is:
 \begin{table}[h!]
+\centering
 \begin{tabular}{c|c}
 Value of $g_m$ & Type\\
 \hline
@@ -92,6 +94,7 @@ $g_m < 0$ & Negative Skew
 \paragraph{Degree of Skewness}
 The degree of skewness from the value is $g_m$ is:
 \begin{table}[h!]
+\centering
 \begin{tabular}{c|c}
 Value of $g_m$ & Degree\\
 \hline
@@ -111,6 +114,7 @@ m_4 &= \dfrac{1}{n}\sum_{i=1}^{n} \left( x_i - \bar{x} \right)^4
 \subsubsection{Type of Kurtosis}
 The types of kurtosis from the value of $\gamma$ are:
 \begin{table}[h!]
+\centering
 \begin{tabular}{c|c}
 Value of $\gamma$ & Type\\
 \hline
@@ -222,6 +226,83 @@ Test for statistical significance of all IVs together.
 	F = \dfrac{\dfrac{\text{ESS}}{(K-1)}}{\dfrac{\text{RSS}}{(N-K)}} \tag{$F \geq F_c, H_0$ is rejected}
 \end{align}
 
+\subsection{Test for Heteroskedasticity}
+\paragraph{Definition} $\sigma_{\epsilon_i} \forall  \epsilon_i \in [X_a, X_b] = \sigma_{\epsilon_i} \forall  \epsilon_i \in [X_{b+1}, X_c]$
+\subsubsection{Durbin-Watson Test}
+\begin{align}
+	d_e = \dfrac{\sum_{t=2}^{n} (\hat{u_t}-\hat{u_{t-1}})^2}{\sum_{t=2}^{n} \hat{u_t}^2}
+\end{align}
+For the $H_0$: No autocorrelation:
+\begin{table}[!h]
+	\centering
+	\begin{tabular}{l|c}
+		$d$ & $H_0$\\
+		\hline
+		$0 \leq d_e \leq d_L$ \& $(4-d_L) \leq d_e \leq 4$ & Rejected\\
+		$d_L < d_e \leq d_U$ \& $(4-d_U) < d_e \leq (4-d_L)$ & Decision Free Zone\\
+		$d_L < d_e < D_U$ & Not rejected
+	\end{tabular}
+\end{table}
 
+\section{Dummy Variables}
+\subsection{Dummy Variable}
+\begin{align}
+	P_i = \beta_0 + \beta_1 S_1 + \beta_2 D_i + \epsilon_i\\
+	E(P_i) =
+		\begin{cases}
+			(\hat{\beta_0}+\hat{\beta_2})+\hat{\beta_1}S_i, &D_i = 1\\
+			\hat{\beta_0} + \hat{\beta_1}S_i, &D_i = 0
+		\end{cases}
+\end{align}
+
+\begin{tikzpicture}
+	\begin{axis}[axis lines = left, xmin = 0, ymin = 0, xmax = 10, ymax = 10, xlabel = $S_i$, ylabel = $P_i$, ticks=none]
+		\addplot[domain=0:10,black, thick]{x+1};
+		\addlegendentry{$\beta_0+\beta_1 S_i$}
+		\addplot[domain=0:10,blue, thick]{x+3};
+		\addlegendentry{$(\beta_0+\beta_2)+\beta_1 S_i$}
+		\draw(axis cs:0,1)[fill]circle(1pt)node[right]{$\beta_0$};
+		\draw(axis cs:0,3)[fill]circle(1pt)node[right]{$\beta_0+\beta_2$};
+	\end{axis}
+\end{tikzpicture}
+
+\subsection{Slope Dummy Variable}
+\begin{align}
+	P_i = \beta_0 + \beta_1 S_1 + \beta_2 (S_i \cdot D_i) + \epsilon_i\\
+E(P_i) =
+\begin{cases}
+	\hat{\beta_0} + \left(\hat{\beta_1}+\hat{\beta_2} \right)S_i, &D_i = 1\\
+	\hat{\beta_0} + \hat{\beta_1}S_i, &D_i = 0
+\end{cases}
+\end{align}
+\begin{tikzpicture}
+	\begin{axis}[axis lines = left, xmin = 0, ymin = 0, xmax = 10, ymax = 10, xlabel = $S_i$, ylabel = $P_i$, ticks=none]
+		\addplot[domain=0:10,black, thick]{0.5 * x+1};
+		\addlegendentry{$\beta_0+\beta_1 S_i$}
+		\addplot[domain=0:10,blue, thick]{x+1};
+		\addlegendentry{$\beta_0+(\beta_1+\beta_2) S_i$}
+		\draw(axis cs:0,1)[fill]circle(1pt)node[right]{$\beta_0$};
+	\end{axis}
+\end{tikzpicture}
+
+\subsection{Slope \& Dummy Variable}
+\begin{align}
+	P_i = \beta_0 + \beta_1 S_1 + \beta_2  D_i + \beta_3 S_i D_i + \epsilon_i\\
+	E(P_i) =
+	\begin{cases}
+		(\hat{\beta_0} + \hat{\beta_2}) + \left(\hat{\beta_1}+\hat{\beta_3} \right)S_i, &D_i = 1\\
+		\hat{\beta_0} + \hat{\beta_1}S_i, &D_i = 0
+	\end{cases}
+\end{align}
+\begin{tikzpicture}
+	\begin{axis}[axis lines = left, xmin = 0, ymin = 0, xmax = 10, ymax = 10, xlabel = $S_i$, ylabel = $P_i$, ticks=none]
+		\addplot[domain=0:10,black, thick]{0.5 * x+1};
+		\addlegendentry{$\beta_0+\beta_1 S_i$}
+		\addplot[domain=0:10,blue, thick]{x+3};
+		\addlegendentry{$(\beta_0+\beta_2)+(\beta_1+\beta_3) S_i$}
+		\draw(axis cs:0,1)[fill]circle(1pt)node[right]{$\beta_0$};
+		\draw(axis cs:0,3)[fill]circle(1pt)node[right]{$\beta_0+\beta_2$};
+	\end{axis}
+\end{tikzpicture}
 
 \end{document}
