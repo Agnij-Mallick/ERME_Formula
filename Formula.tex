@@ -166,6 +166,11 @@ r &= \dfrac{\sum_{i=1}^n (x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=1}^n (x_i-\ba
 & = \dfrac{\text{Cov}(x,y)}{\sqrt{\text{Var}(x) \cdot \text{Var}(y)}}\\
 & = \dfrac{\text{Cov}(x,y)}{\sigma_x \cdot \sigma_y}
 \end{align}
+\subsection{Spearman's Rank Correlation Co-efficient}
+\begin{align}
+	r_s & = 1-\dfrac{6 \sum d_i^2}{n\left(n^2-1\right)}\\
+	d_i &= R(X_i) - R(Y_i)
+\end{align}
 
 \section{Estimation of Regression Function}
 For the regression functions:
