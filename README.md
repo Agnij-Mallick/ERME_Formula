@@ -1,3 +1,6 @@
+# Deprecated
+The contents have been included in [https://github.com/Agnij-Mallick/maths_formulae](https://github.com/Agnij-Mallick/maths_formulae.git). Look in the Statistics subsection.
+
 # ERME_Formula
 A List of Formulae for Empirical Research in Economics and Management
 ---------------------------------------------------------------------
